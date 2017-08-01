@@ -8,7 +8,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from stop_words import stops
 from collections import Counter
 from bs4 import BeautifulSoup
-#from models import Result
 
 app = Flask(__name__)
 app.config.from_object(os.environ.get('APP_SETTINGS') or "config.DevelopmentConfig")

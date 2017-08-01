@@ -8,7 +8,7 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        "postgresql://laklak:laklak@localhost:5432/wordcount_dev"
+        "postgresql://wc_tutorial:wc_tutorial@localhost:5432/wordcount_dev"
 
 
 class ProductionConfig(Config):
