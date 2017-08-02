@@ -1,0 +1,4 @@
+#!/bin/bash
+
+CMD="uwsgi --http 0.0.0.0:5000 --wsgi-file $APP_DIR/wsgi.py"
+exec $CMD

@@ -1,0 +1,19 @@
+#!/bin/bash
+ACTION=$1
+
+if [ "$ACTION" = "app" ]; then
+    echo "Running app..."
+    exec /usr/local/bin/run
+elif [ "$ACTION" = "db_init"]; then
+    exec /usr/local/bin/db_init
+elif [ "$ACTION" = "manage" ]; then
+    exec python /opt/apps/laklak-api/manage.py shell
+elif [ "$ACTION" = "shell" ]; then
+    echo "Running shell..."
+    echo "Use the /opt/apps/laklak-api/manage.py to run flask management commands"
+    echo "source /usr/local/bin/config_env" >> ~/.bash_profile
+    exec /bin/bash -l
+else
+    echo "Unknown action: $ACTION"
+    exit 1
+fi

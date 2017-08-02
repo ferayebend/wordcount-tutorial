@@ -1,0 +1,5 @@
+#!/bin/bash
+
+exec python $APP_DIR/manage.py db init
+exec python $APP_DIR/manage.py db migrate
+exec python $APP_DIR/manage.py db upgrade
