@@ -17,5 +17,12 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 
+@manager.command
+def recreate_db():
+    """Recreates a database."""
+    db.drop_all()
+    db.create_all()
+    db.session.commit()
+
 if __name__ == '__main__':
     manager.run()

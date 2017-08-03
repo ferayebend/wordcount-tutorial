@@ -1,29 +1,28 @@
 version: '2'
 
 services:
+  postgres:
+    restart: always
+    build: ./postgres
+    networks:
+      - wc_n
+    ports:
+      - "5432:5432"
+
   web:
     restart: always
     build: .
     volumes:
       - .:/opt/apps/wordcount
+    networks:
+      - wc_n
     ports:
       - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://wc_tutorial:wc_tutorial@postgres:5432/wordcount_dev
     depends_on:
       - postgres
 
-  data:
-    restart: always
-    image: postgres:9.6
-    volumes:
-      - /var/lib/postgresql
-    command: "true"
-
-  postgres:
-    restart: always
-    build: ./postgres
-    volumes_from:
-      - data
-    #expose:
-    #  - "5432"
-    ports:
-       - "5432:5432"
+networks:
+    wc_n:
+      driver: bridge
